@@ -6,6 +6,9 @@ Created on Fri Feb 16 18:53:31 2018
 @author: momobade
 """
 
+import vxlan_config as vx
+import global_header as gh
+
 class ospf:
     def __init__(self, processID, routerID):
         self.RID = routerID
@@ -49,10 +52,13 @@ class multicast:
     
     def show_config(self):
         config = (
-                "ip pim rp-address %s group-list %s\n!\n"%(self.AnycastRP, self.MG)
+                "ip pim rp-address %s group-list %s\n!\n"
+                %(self.AnycastRP, self.MG)
                 )
         if self.RP:
-            config = (config + "ip pim anycast-rp %s %s\n!\n"%(self.AnycastRP,self.RID))
+            config = (config + "ip pim anycast-rp %s %s\n!\n"
+                      %(self.AnycastRP,self.RID)
+                      )
         
         for _int in self.intf:
             config = ( config +
@@ -84,7 +90,7 @@ class port_channel:
         self.IP = IP_Address
         self.VRF = VRF
     
-    def set_trunk(self, vlanList, nativeVLAN):
+    def set_trunk(self, vlanList, nativeVLAN = None):
         self.portType = 2
         self.vlanList = vlanList
         self.nativeVLAN = nativeVLAN
@@ -124,9 +130,11 @@ class port_channel:
             config = ( config +
                     " switchport\n"
                     " switchport mode trunk\n"
-                    " switchport trunk allowed vlan %s\n"
-                    " switchport trunk native vlan %s\n!\n"
-                    %(self.vlanList, self.nativeVLAN))
+                    " switchport trunk allowed vlan %s"
+                    %(self.vlanList))
+            config = config +" switchport trunk native vlan %s"%(self.nativeVLAN) if self.nativeVLAN is not None else config
+            
+            config = config + "\n!\n"
         
         if self.portType is 3:
             config = ( config +
@@ -155,10 +163,23 @@ class ethernet:
     def __init__(self, intf_name, description):
         self.name = intf_name
         self.desc = description
+        self.trunk = False
+        self.access = False
+        self.vlanList = None
+        self.nativeVlan = None
     
     def set_lacpMode(self, lacpMode, port_channel):
         self.lacpMode = lacpMode
         self.po = port_channel
+    
+    def set_trunk(self, vlan_list, nativeVlan = None):
+        self.vlanList = vlanList
+        self.nativeVlan = nativeVlan
+        self.trunk = True
+    
+    def set_access(self, vlan):
+        self.vlanList = vlan
+        self.access = True
     
     def show_config(self):
         config = (
@@ -171,11 +192,28 @@ class ethernet:
             config = ( config + 
                     " channel-group %s mode active\n!\n"
                     %(self.po))
+            return config
 
         if self.lacpMode == 'On':
             config = ( config +
                     " channel-group %s mode on\n!\n" 
                     %(self.po))
+            return config
+        
+        if self.trunk:
+            config = ( config +
+                    " switchport\n"
+                    " switchport mode trunk\n"
+                    " switchport trunk allowed vlan %s\n"
+                    " switchrpot trunk native vlan %s\n!\n"
+                    %(self.vlanList, self.nativeVlan))
+        
+        if self.access:
+            config = ( config +
+                    " switchport\n"
+                    " switchport mode access\n"
+                    " switchport access vlan %s\n!\n"
+                    %(self.vlanList))
         
         return config
 
