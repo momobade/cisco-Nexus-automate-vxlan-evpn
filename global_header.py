@@ -22,7 +22,7 @@ class device:
     def add_vlan(self, vlan):
         self.vlan_list.append(vlan)
     
-    def conf_bgp(self, BGP):
+    def add_bgp(self, BGP):
         self.BGP = BGP
     
     def add_vrf(self, VRF):
@@ -46,10 +46,11 @@ class device:
     def show_config_all(self):
         config = (
                 "## Device Configuration : %s##\n"
-                "hostname %s\n!\n"%(self.hostname, self.hostname))
+                "hostname %s\n!\n"
+                "system nve allow-vxlan-native-vlan\n!\n"%(self.hostname, self.hostname))
         if self.vlan_list:
             for _vlan in self.vlan_list:
-                config = config + _vlan.config
+                config = config + _vlan.show_config()
         if self.VRF:
             for _vrf in self.VRF:
                 config = config + _vrf.config
@@ -60,7 +61,7 @@ class device:
             for _intf in self.intf:
                 config = config + _intf.show_config()
         if self.BGP is not None:
-            config = config + self.BGP.config
+            config = config + self.BGP.show_config()
         if self.OSPF is not None:
             config = config + self.OSPF.config
         if self.multicast is not None:
