@@ -29,7 +29,7 @@ def call_device_list(_device):
 # Function defined to read from excel sheet directly
 #
 def read_bgp(_srcExcel):
-    bgp_info = pd.read_excel(_srcExcel, sheet_name='BGP',header=[1])
+    bgp_info = pd.read_excel(_srcExcel, sheetname='BGP',header=[1])
     
     # Fill Nan with first value in columns
     bgp_info.fillna(method='ffill', inplace=True)
@@ -42,13 +42,15 @@ def read_bgp(_srcExcel):
     # Replace '-' with np.Nan
     bgp_info.replace(to_replace='-',value=np.NaN, inplace=True)
     
+    bgp_info = bgp_info.where(pd.notnull(bgp_info), None)
+    
     return bgp_info
 
 #
 # Function defined to read from excel sheet directly
 #
 def read_portChannel(_srcExcel):
-    portChannel_info = pd.read_excel(_srcExcel, sheet_name='Fabric Port-channel', header=[1])
+    portChannel_info = pd.read_excel(_srcExcel, sheetname='Fabric Port-channel', header=[1])
 
     # Fill Nan with first value in columns
     portChannel_info.fillna(method='ffill', inplace=True)
@@ -67,9 +69,11 @@ def read_portChannel(_srcExcel):
             )
     
     portChannel_info['vpc'] = (
-            portChannel_info['vpc'].fillna('0').astype(int).astype(str)
+            portChannel_info['vpc'].fillna('0').astype(int).astype(str).replace(to_replace='0', value=np.NaN)
             )
 
+    portChannel_info = portChannel_info.where(pd.notnull(portChannel_info), None)
+    
     # Identify the devices listed in the excel sheet
     output = portChannel_info['Device'].unique()
     
@@ -79,7 +83,7 @@ def read_portChannel(_srcExcel):
 # Function defined to use read from excel sheet directly
 #
 def read_vlan(_srcExcel):
-    vlan_info = pd.read_excel(_srcExcel, sheet_name='VLAN', header=[1])
+    vlan_info = pd.read_excel(_srcExcel, sheetname='VLAN', header=[1])
     
     # Fill Nan with first value in columns
     vlan_info.fillna(method='ffill', inplace=True)
@@ -93,6 +97,8 @@ def read_vlan(_srcExcel):
             vlan_info['L3VNI'].fillna('0').astype(int).astype(str).replace(to_replace='0', value=np.NaN)
             )
 
+    vlan_info = vlan_info.where(pd.notnull(vlan_info), None)
+
     # Identify the devices listed in the excel sheet
     output = vlan_info['Device'].unique()
     
@@ -102,7 +108,7 @@ def read_vlan(_srcExcel):
 # Function defined to read from excel sheet directly
 #
 def read_ethernet(_srcExcel):
-    eth_info = pd.read_excel(_srcExcel, sheet_name='Physical interface', header=[1])
+    eth_info = pd.read_excel(_srcExcel, sheetname='Physical interface', header=[1])
     
     # Fill Nan with first value in columns
     eth_info.fillna(method='ffill', inplace=True)
@@ -121,7 +127,7 @@ def read_ethernet(_srcExcel):
 # Function defined to use read from excel sheet directly
 #
 def read_vpc(_srcExcel):
-    vpc_info = pd.read_excel(_srcExcel, sheet_name='vPC', header=[1])
+    vpc_info = pd.read_excel(_srcExcel, sheetname='vPC', header=[1])
     
     vpc_info['Domain'] = vpc_info['Domain'].astype(int)
     vpc_info['Peer-Link'] = vpc_info['Peer-Link'].astype(int)
@@ -133,12 +139,12 @@ def read_vpc(_srcExcel):
     return vpc_info
 
 def read_multicast(_srcExcel):
-    multicast_info = pd.read_excel(_srcExcel, sheet_name='Multicast')
+    multicast_info = pd.read_excel(_srcExcel, sheetname='Multicast')
     
     return multicast_info
 
 def read_ospf(_srcExcel):
-    ospf_info = pd.read_excel(_srcExcel, sheet_name='OSPF')
+    ospf_info = pd.read_excel(_srcExcel, sheetname='OSPF')
     
     return ospf_info
     
@@ -163,19 +169,32 @@ def populate_bgp(df):
                 _device['Router-ID'].iloc[0]
                 )
         
-        # Add VRFs to each BGP instance
+        # Add VRFs name to each BGP instance
         for _vrf in _device.VRF.dropna():
             _bgp.add_vrf(_vrf)
         
         # Add neighbors for each BGP instance
-        for _nei in _device.Neighbors.dropna().index:
-            _bgp.add_neighbor(
-                    IP_Address = _device.Neighbors.loc[_nei],
-                    remote_AS = _device['Remote AS'].loc[_nei],
-                    route_map_IN = _device['Route-Map IN'].loc[_nei],
-                    route_map_OUT = _device['Route-Map OUT'].loc[_nei],
-                    vrfName = _device['VRF'].loc[_nei],
-                    isRR = _device['Route-Reflector'].loc[_nei])
+        for _itr in _device.Neighbors.dropna().index:
+            _nei = vx.bgp_neighbor(
+                    IP_Address = _device.Neighbors.loc[_itr],
+                    remote_AS = _device['Remote AS'].loc[_itr]
+                    )
+            
+            _nei.set_route_map_IN(_device['Route-Map IN'].loc[_itr])
+            
+            _nei.set_route_map_OUT(_device['Route-Map OUT'].loc[_itr])
+            
+            _nei.set_source(_device['Soure Interface'].loc[_itr])
+            
+            _nei.set_vrf(_device['VRF'].loc[_itr])
+            
+            _nei.set_RR(_device['Route-Reflector'].loc[_itr])
+            
+            _nei.set_bfd(True)
+            
+            _nei.set_password(_device['Password'].loc[_itr])
+            
+            _bgp.add_neighbor(_nei)
         
         # Check if the device instance is already created;
         # If yes, return the device instance
@@ -183,7 +202,7 @@ def populate_bgp(df):
         _node = call_device_list(dev)
         
         # Assign the new BGP instance to the node in the list
-        _node.conf_bgp(_bgp)
+        _node.add_bgp(_bgp)
         
     return device_list 
 
@@ -201,11 +220,15 @@ def populate_vlan(df):
         for _in in _device['Vlan Number'].index:
             _vlan = vx.vlan(
                     _device['vlan name'].loc[_in],
-                    _device['Vlan Number'].loc[_in],
-                    _device['VRF'].loc[_in],
-                    _device['IP address'].loc[_in]
+                    _device['Vlan Number'].loc[_in]
                     )
-            if type(_device['L3VNI'].loc[_in]) is str:
+            
+            _vlan.setIP(
+                    _device['IP address'].loc[_in],
+                    _device['VRF'].loc[_in]
+                    )
+            
+            if _device['L3VNI'].loc[_in] is not None:
                 _vlan.to_l3vni(
                         _device['L3VNI'].loc[_in]
                         )
