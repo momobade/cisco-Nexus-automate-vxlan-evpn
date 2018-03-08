@@ -21,8 +21,8 @@ def main(argv):
             sourcefile = arg
         
         print('sourcefile='+sourcefile)
-        
-    
+
+
     device_list = []
     #file_source = 'ip_information_LAB_VNF.xlsx'
 
