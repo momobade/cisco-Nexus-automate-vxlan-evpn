@@ -6,28 +6,13 @@ The project's purpose is to build a python package that can store VxLAN paramete
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
+### Dependencies
 
-This software requires python 3.5 and above
+* Python 3.5
+* Packages: 
+  - pandas 
+  - xlrd
 
-Check the version of python running on the OS
-```
-python --version
-Python 3.5.3
-```
-If the output is not 3.5 and above, please refer to the Installation section below
-
-### Installing
-
-The only requirement is to have python 3.5 running on the machine.
-
-Please follow the below guide in order to install Python 3.5 on your machine
-
-### Macintosh Machine
-
-```
-pip install python
-```
 
 ## Running the package
 
