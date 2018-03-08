@@ -33,7 +33,7 @@ class ospf:
                 )
 
     def show_config(self):
-        return print(self.config)
+        print(self.config)
     
 
 class multicast:
@@ -124,7 +124,7 @@ class port_channel:
                     " no lacp graceful-convergence\n"
                     )
         if self.portType is 0:  # Not Defined
-            return print(config)
+            print(config)
         
         if self.portType is 2:
             config = ( config +
