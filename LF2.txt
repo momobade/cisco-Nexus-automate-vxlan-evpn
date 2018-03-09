@@ -1,0 +1,2682 @@
+## Device Configuration : LF2##
+hostname LF2
+!
+system nve allow-vxlan-native-vlan
+!
+vlan 3500
+ name OSP_Storage
+ vn-segment 11103500
+!
+evpn
+ vni 11103500 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103500
+  suppress-arp
+  mcast-group 239.100.6.4
+ !
+!
+vlan 3501
+ name OSP_Internal
+ vn-segment 11103501
+!
+evpn
+ vni 11103501 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103501
+  suppress-arp
+  mcast-group 239.100.6.5
+ !
+!
+vlan 3502
+ name OSP_Storage_Mgmt
+ vn-segment 11103502
+!
+evpn
+ vni 11103502 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103502
+  suppress-arp
+  mcast-group 239.100.6.6
+ !
+!
+vlan 3503
+ name OSP_Tenant
+ vn-segment 11103503
+!
+evpn
+ vni 11103503 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103503
+  suppress-arp
+  mcast-group 239.100.6.7
+ !
+!
+vlan 3504
+ name OSP_Provisioning
+ vn-segment 11103504
+!
+evpn
+ vni 11103504 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103504
+  suppress-arp
+  mcast-group 239.100.6.8
+ !
+!
+vlan 3505
+ name RHV_Migration
+ vn-segment 11103505
+!
+evpn
+ vni 11103505 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103505
+  suppress-arp
+  mcast-group 239.100.6.9
+ !
+!
+vlan 3506
+ name RHV_Gluster
+ vn-segment 11103506
+!
+evpn
+ vni 11103506 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103506
+  suppress-arp
+  mcast-group 239.100.6.10
+ !
+!
+vlan 3507
+ name RHV_Management
+ vn-segment 11103507
+!
+evpn
+ vni 11103507 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103507
+  suppress-arp
+  mcast-group 239.100.6.11
+ !
+!
+vlan 2018
+ name OSP_Management
+ vn-segment 11102018
+!
+interface vlan 2018
+ description interface_OSP_Management
+ vrf member Inband_MGMT
+ ip address 10.106.160.129/25
+ no shutdown
+ fabric forwarding mode anycast-gateway
+!
+evpn
+ vni 11102018 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11102018
+  suppress-arp
+  mcast-group 239.100.6.12
+ !
+!
+vlan 2019
+ name OSP_External
+ vn-segment 11102019
+!
+interface vlan 2019
+ description interface_OSP_External
+ vrf member Inband_MGMT
+ ip address 10.106.161.1/27
+ no shutdown
+ fabric forwarding mode anycast-gateway
+!
+evpn
+ vni 11102019 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11102019
+  suppress-arp
+  mcast-group 239.100.6.13
+ !
+!
+vlan 2020
+ name Management_Operations
+ vn-segment 11102020
+!
+interface vlan 2020
+ description interface_Management_Operations
+ vrf member Central_OAM
+ ip address 10.106.161.33/27
+ no shutdown
+ fabric forwarding mode anycast-gateway
+!
+evpn
+ vni 11102020 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11102020
+  suppress-arp
+  mcast-group 239.100.6.14
+ !
+!
+vlan 2021
+ name Management_Inter_POD
+ vn-segment 11102021
+!
+interface vlan 2021
+ description interface_Management_Inter_POD
+ vrf member Central_OAM
+ ip address 10.106.161.65/27
+ no shutdown
+ fabric forwarding mode anycast-gateway
+!
+evpn
+ vni 11102021 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11102021
+  suppress-arp
+  mcast-group 239.100.6.15
+ !
+!
+vlan 2022
+ name CF_Management
+ vn-segment 11102022
+!
+interface vlan 2022
+ description interface_CF_Management
+ vrf member Inband_MGMT
+ ip address 10.106.161.97/27
+ no shutdown
+ fabric forwarding mode anycast-gateway
+!
+evpn
+ vni 11102022 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11102022
+  suppress-arp
+  mcast-group 239.100.6.16
+ !
+!
+vlan 2023
+ name RHV_Access
+ vn-segment 11102023
+!
+interface vlan 2023
+ description interface_RHV_Access
+ vrf member Central_OAM
+ ip address 10.106.161.129/27
+ no shutdown
+ fabric forwarding mode anycast-gateway
+!
+evpn
+ vni 11102023 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11102023
+  suppress-arp
+  mcast-group 239.100.6.17
+ !
+!
+vlan 2026
+ name Management_HTTPProxy
+ vn-segment 11102026
+!
+interface vlan 2026
+ description interface_Management_HTTPProxy
+ vrf member OAM_Internet
+ ip address 10.106.161.225/27
+ no shutdown
+ fabric forwarding mode anycast-gateway
+!
+evpn
+ vni 11102026 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11102026
+  suppress-arp
+  mcast-group 239.100.6.18
+ !
+!
+vlan 3600
+ vn-segment 11103600
+!
+evpn
+ vni 11103600 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103600
+  suppress-arp
+  mcast-group 239.100.6.19
+ !
+!
+vlan 3601
+ vn-segment 11103601
+!
+evpn
+ vni 11103601 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103601
+  suppress-arp
+  mcast-group 239.100.6.20
+ !
+!
+vlan 3604
+ vn-segment 11103604
+!
+evpn
+ vni 11103604 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103604
+  suppress-arp
+  mcast-group 239.100.6.21
+ !
+!
+vlan 3605
+ vn-segment 11103605
+!
+evpn
+ vni 11103605 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103605
+  suppress-arp
+  mcast-group 239.100.6.22
+ !
+!
+vlan 3607
+ vn-segment 11103607
+!
+evpn
+ vni 11103607 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103607
+  suppress-arp
+  mcast-group 239.100.6.23
+ !
+!
+vlan 3610
+ vn-segment 11103610
+!
+evpn
+ vni 11103610 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103610
+  suppress-arp
+  mcast-group 239.100.6.24
+ !
+!
+vlan 3611
+ vn-segment 11103611
+!
+evpn
+ vni 11103611 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103611
+  suppress-arp
+  mcast-group 239.100.6.25
+ !
+!
+vlan 3612
+ vn-segment 11103612
+!
+evpn
+ vni 11103612 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103612
+  suppress-arp
+  mcast-group 239.100.6.26
+ !
+!
+vlan 3613
+ vn-segment 11103613
+!
+evpn
+ vni 11103613 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103613
+  suppress-arp
+  mcast-group 239.100.6.27
+ !
+!
+vlan 3614
+ vn-segment 11103614
+!
+evpn
+ vni 11103614 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103614
+  suppress-arp
+  mcast-group 239.100.6.28
+ !
+!
+vlan 3615
+ vn-segment 11103615
+!
+evpn
+ vni 11103615 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103615
+  suppress-arp
+  mcast-group 239.100.6.29
+ !
+!
+vlan 3616
+ vn-segment 11103616
+!
+evpn
+ vni 11103616 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103616
+  suppress-arp
+  mcast-group 239.100.6.30
+ !
+!
+vlan 3617
+ vn-segment 11103617
+!
+evpn
+ vni 11103617 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103617
+  suppress-arp
+  mcast-group 239.100.6.31
+ !
+!
+vlan 3618
+ vn-segment 11103618
+!
+evpn
+ vni 11103618 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103618
+  suppress-arp
+  mcast-group 239.100.6.32
+ !
+!
+vlan 3619
+ vn-segment 11103619
+!
+evpn
+ vni 11103619 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103619
+  suppress-arp
+  mcast-group 239.100.6.33
+ !
+!
+vlan 3620
+ vn-segment 11103620
+!
+evpn
+ vni 11103620 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103620
+  suppress-arp
+  mcast-group 239.100.6.34
+ !
+!
+vlan 3621
+ vn-segment 11103621
+!
+evpn
+ vni 11103621 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103621
+  suppress-arp
+  mcast-group 239.100.6.35
+ !
+!
+vlan 3622
+ vn-segment 11103622
+!
+evpn
+ vni 11103622 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103622
+  suppress-arp
+  mcast-group 239.100.6.36
+ !
+!
+vlan 3623
+ vn-segment 11103623
+!
+evpn
+ vni 11103623 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103623
+  suppress-arp
+  mcast-group 239.100.6.37
+ !
+!
+vlan 3624
+ vn-segment 11103624
+!
+evpn
+ vni 11103624 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103624
+  suppress-arp
+  mcast-group 239.100.6.38
+ !
+!
+vlan 3625
+ vn-segment 11103625
+!
+evpn
+ vni 11103625 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103625
+  suppress-arp
+  mcast-group 239.100.6.39
+ !
+!
+vlan 3626
+ vn-segment 11103626
+!
+evpn
+ vni 11103626 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103626
+  suppress-arp
+  mcast-group 239.100.6.40
+ !
+!
+vlan 3627
+ vn-segment 11103627
+!
+evpn
+ vni 11103627 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103627
+  suppress-arp
+  mcast-group 239.100.6.41
+ !
+!
+vlan 3628
+ vn-segment 11103628
+!
+evpn
+ vni 11103628 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103628
+  suppress-arp
+  mcast-group 239.100.6.42
+ !
+!
+vlan 3629
+ vn-segment 11103629
+!
+evpn
+ vni 11103629 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103629
+  suppress-arp
+  mcast-group 239.100.6.43
+ !
+!
+vlan 3630
+ vn-segment 11103630
+!
+evpn
+ vni 11103630 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103630
+  suppress-arp
+  mcast-group 239.100.6.44
+ !
+!
+vlan 3631
+ vn-segment 11103631
+!
+evpn
+ vni 11103631 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103631
+  suppress-arp
+  mcast-group 239.100.6.45
+ !
+!
+vlan 3632
+ vn-segment 11103632
+!
+evpn
+ vni 11103632 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103632
+  suppress-arp
+  mcast-group 239.100.6.46
+ !
+!
+vlan 3633
+ vn-segment 11103633
+!
+evpn
+ vni 11103633 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103633
+  suppress-arp
+  mcast-group 239.100.6.47
+ !
+!
+vlan 3634
+ vn-segment 11103634
+!
+evpn
+ vni 11103634 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103634
+  suppress-arp
+  mcast-group 239.100.6.48
+ !
+!
+vlan 3635
+ vn-segment 11103635
+!
+evpn
+ vni 11103635 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103635
+  suppress-arp
+  mcast-group 239.100.6.49
+ !
+!
+vlan 3636
+ vn-segment 11103636
+!
+evpn
+ vni 11103636 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103636
+  suppress-arp
+  mcast-group 239.100.6.50
+ !
+!
+vlan 3637
+ vn-segment 11103637
+!
+evpn
+ vni 11103637 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103637
+  suppress-arp
+  mcast-group 239.100.6.51
+ !
+!
+vlan 3638
+ vn-segment 11103638
+!
+evpn
+ vni 11103638 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103638
+  suppress-arp
+  mcast-group 239.100.6.52
+ !
+!
+vlan 3639
+ vn-segment 11103639
+!
+evpn
+ vni 11103639 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103639
+  suppress-arp
+  mcast-group 239.100.6.53
+ !
+!
+vlan 3640
+ vn-segment 11103640
+!
+evpn
+ vni 11103640 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103640
+  suppress-arp
+  mcast-group 239.100.6.54
+ !
+!
+vlan 3641
+ vn-segment 11103641
+!
+evpn
+ vni 11103641 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103641
+  suppress-arp
+  mcast-group 239.100.6.55
+ !
+!
+vlan 3642
+ vn-segment 11103642
+!
+evpn
+ vni 11103642 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103642
+  suppress-arp
+  mcast-group 239.100.6.56
+ !
+!
+vlan 3643
+ vn-segment 11103643
+!
+evpn
+ vni 11103643 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103643
+  suppress-arp
+  mcast-group 239.100.6.57
+ !
+!
+vlan 3644
+ vn-segment 11103644
+!
+evpn
+ vni 11103644 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103644
+  suppress-arp
+  mcast-group 239.100.6.58
+ !
+!
+vlan 3645
+ vn-segment 11103645
+!
+evpn
+ vni 11103645 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103645
+  suppress-arp
+  mcast-group 239.100.6.59
+ !
+!
+vlan 3646
+ vn-segment 11103646
+!
+evpn
+ vni 11103646 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103646
+  suppress-arp
+  mcast-group 239.100.6.60
+ !
+!
+vlan 3647
+ vn-segment 11103647
+!
+evpn
+ vni 11103647 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103647
+  suppress-arp
+  mcast-group 239.100.6.61
+ !
+!
+vlan 3648
+ vn-segment 11103648
+!
+evpn
+ vni 11103648 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103648
+  suppress-arp
+  mcast-group 239.100.6.62
+ !
+!
+vlan 3649
+ vn-segment 11103649
+!
+evpn
+ vni 11103649 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103649
+  suppress-arp
+  mcast-group 239.100.6.63
+ !
+!
+vlan 3650
+ vn-segment 11103650
+!
+evpn
+ vni 11103650 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103650
+  suppress-arp
+  mcast-group 239.100.6.64
+ !
+!
+vlan 3651
+ vn-segment 11103651
+!
+evpn
+ vni 11103651 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103651
+  suppress-arp
+  mcast-group 239.100.6.65
+ !
+!
+vlan 3652
+ vn-segment 11103652
+!
+evpn
+ vni 11103652 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103652
+  suppress-arp
+  mcast-group 239.100.6.66
+ !
+!
+vlan 3653
+ vn-segment 11103653
+!
+evpn
+ vni 11103653 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103653
+  suppress-arp
+  mcast-group 239.100.6.67
+ !
+!
+vlan 3654
+ vn-segment 11103654
+!
+evpn
+ vni 11103654 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103654
+  suppress-arp
+  mcast-group 239.100.6.68
+ !
+!
+vlan 3655
+ vn-segment 11103655
+!
+evpn
+ vni 11103655 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103655
+  suppress-arp
+  mcast-group 239.100.6.69
+ !
+!
+vlan 3656
+ vn-segment 11103656
+!
+evpn
+ vni 11103656 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103656
+  suppress-arp
+  mcast-group 239.100.6.70
+ !
+!
+vlan 3657
+ vn-segment 11103657
+!
+evpn
+ vni 11103657 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103657
+  suppress-arp
+  mcast-group 239.100.6.71
+ !
+!
+vlan 3658
+ vn-segment 11103658
+!
+evpn
+ vni 11103658 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103658
+  suppress-arp
+  mcast-group 239.100.6.72
+ !
+!
+vlan 3659
+ vn-segment 11103659
+!
+evpn
+ vni 11103659 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103659
+  suppress-arp
+  mcast-group 239.100.6.73
+ !
+!
+vlan 3660
+ vn-segment 11103660
+!
+evpn
+ vni 11103660 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103660
+  suppress-arp
+  mcast-group 239.100.6.74
+ !
+!
+vlan 3661
+ vn-segment 11103661
+!
+evpn
+ vni 11103661 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103661
+  suppress-arp
+  mcast-group 239.100.6.75
+ !
+!
+vlan 3662
+ vn-segment 11103662
+!
+evpn
+ vni 11103662 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103662
+  suppress-arp
+  mcast-group 239.100.6.76
+ !
+!
+vlan 3663
+ vn-segment 11103663
+!
+evpn
+ vni 11103663 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103663
+  suppress-arp
+  mcast-group 239.100.6.77
+ !
+!
+vlan 3664
+ vn-segment 11103664
+!
+evpn
+ vni 11103664 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103664
+  suppress-arp
+  mcast-group 239.100.6.78
+ !
+!
+vlan 3665
+ vn-segment 11103665
+!
+evpn
+ vni 11103665 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103665
+  suppress-arp
+  mcast-group 239.100.6.79
+ !
+!
+vlan 3666
+ vn-segment 11103666
+!
+evpn
+ vni 11103666 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103666
+  suppress-arp
+  mcast-group 239.100.6.80
+ !
+!
+vlan 3667
+ vn-segment 11103667
+!
+evpn
+ vni 11103667 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103667
+  suppress-arp
+  mcast-group 239.100.6.81
+ !
+!
+vlan 3668
+ vn-segment 11103668
+!
+evpn
+ vni 11103668 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103668
+  suppress-arp
+  mcast-group 239.100.6.82
+ !
+!
+vlan 3669
+ vn-segment 11103669
+!
+evpn
+ vni 11103669 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103669
+  suppress-arp
+  mcast-group 239.100.6.83
+ !
+!
+vlan 3670
+ vn-segment 11103670
+!
+evpn
+ vni 11103670 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103670
+  suppress-arp
+  mcast-group 239.100.6.84
+ !
+!
+vlan 3671
+ vn-segment 11103671
+!
+evpn
+ vni 11103671 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103671
+  suppress-arp
+  mcast-group 239.100.6.85
+ !
+!
+vlan 3672
+ vn-segment 11103672
+!
+evpn
+ vni 11103672 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103672
+  suppress-arp
+  mcast-group 239.100.6.86
+ !
+!
+vlan 3673
+ vn-segment 11103673
+!
+evpn
+ vni 11103673 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103673
+  suppress-arp
+  mcast-group 239.100.6.87
+ !
+!
+vlan 3674
+ vn-segment 11103674
+!
+evpn
+ vni 11103674 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103674
+  suppress-arp
+  mcast-group 239.100.6.88
+ !
+!
+vlan 3675
+ vn-segment 11103675
+!
+evpn
+ vni 11103675 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103675
+  suppress-arp
+  mcast-group 239.100.6.89
+ !
+!
+vlan 3676
+ vn-segment 11103676
+!
+evpn
+ vni 11103676 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103676
+  suppress-arp
+  mcast-group 239.100.6.90
+ !
+!
+vlan 3677
+ vn-segment 11103677
+!
+evpn
+ vni 11103677 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103677
+  suppress-arp
+  mcast-group 239.100.6.91
+ !
+!
+vlan 3678
+ vn-segment 11103678
+!
+evpn
+ vni 11103678 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103678
+  suppress-arp
+  mcast-group 239.100.6.92
+ !
+!
+vlan 3679
+ vn-segment 11103679
+!
+evpn
+ vni 11103679 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103679
+  suppress-arp
+  mcast-group 239.100.6.93
+ !
+!
+vlan 3680
+ vn-segment 11103680
+!
+evpn
+ vni 11103680 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103680
+  suppress-arp
+  mcast-group 239.100.6.94
+ !
+!
+vlan 3681
+ vn-segment 11103681
+!
+evpn
+ vni 11103681 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103681
+  suppress-arp
+  mcast-group 239.100.6.95
+ !
+!
+vlan 3682
+ vn-segment 11103682
+!
+evpn
+ vni 11103682 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103682
+  suppress-arp
+  mcast-group 239.100.6.96
+ !
+!
+vlan 3683
+ vn-segment 11103683
+!
+evpn
+ vni 11103683 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103683
+  suppress-arp
+  mcast-group 239.100.6.97
+ !
+!
+vlan 3684
+ vn-segment 11103684
+!
+evpn
+ vni 11103684 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103684
+  suppress-arp
+  mcast-group 239.100.6.98
+ !
+!
+vlan 3685
+ vn-segment 11103685
+!
+evpn
+ vni 11103685 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103685
+  suppress-arp
+  mcast-group 239.100.6.99
+ !
+!
+vlan 3686
+ vn-segment 11103686
+!
+evpn
+ vni 11103686 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103686
+  suppress-arp
+  mcast-group 239.100.6.100
+ !
+!
+vlan 3687
+ vn-segment 11103687
+!
+evpn
+ vni 11103687 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103687
+  suppress-arp
+  mcast-group 239.100.6.101
+ !
+!
+vlan 3688
+ vn-segment 11103688
+!
+evpn
+ vni 11103688 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103688
+  suppress-arp
+  mcast-group 239.100.6.102
+ !
+!
+vlan 3689
+ vn-segment 11103689
+!
+evpn
+ vni 11103689 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103689
+  suppress-arp
+  mcast-group 239.100.6.103
+ !
+!
+vlan 3700
+ vn-segment 11103700
+!
+evpn
+ vni 11103700 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103700
+  suppress-arp
+  mcast-group 239.100.6.104
+ !
+!
+vlan 3701
+ vn-segment 11103701
+!
+evpn
+ vni 11103701 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103701
+  suppress-arp
+  mcast-group 239.100.6.105
+ !
+!
+vlan 3702
+ vn-segment 11103702
+!
+evpn
+ vni 11103702 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103702
+  suppress-arp
+  mcast-group 239.100.6.106
+ !
+!
+vlan 3703
+ vn-segment 11103703
+!
+evpn
+ vni 11103703 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103703
+  suppress-arp
+  mcast-group 239.100.6.107
+ !
+!
+vlan 3704
+ vn-segment 11103704
+!
+evpn
+ vni 11103704 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103704
+  suppress-arp
+  mcast-group 239.100.6.108
+ !
+!
+vlan 3705
+ vn-segment 11103705
+!
+evpn
+ vni 11103705 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103705
+  suppress-arp
+  mcast-group 239.100.6.109
+ !
+!
+vlan 3706
+ vn-segment 11103706
+!
+evpn
+ vni 11103706 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103706
+  suppress-arp
+  mcast-group 239.100.6.110
+ !
+!
+vlan 3707
+ vn-segment 11103707
+!
+evpn
+ vni 11103707 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103707
+  suppress-arp
+  mcast-group 239.100.6.111
+ !
+!
+vlan 3708
+ vn-segment 11103708
+!
+evpn
+ vni 11103708 l2
+  rd auto
+  route-target both auto
+ !
+!
+interface nve1
+ member vni 11103708
+  suppress-arp
+  mcast-group 239.100.6.112
+ !
+!
+vlan 3801
+ name Mobile_2G_PS_Bearer_VRF
+ vn-segment 90001
+!
+interface vlan 3801
+ description l3vni_interface_Mobile_2G_PS_Bearer_VRF
+ vrf member Mobile_2G_PS_Bearer
+ ip forward
+ no shutdown
+!
+interface nve1
+ member vni 90001 associate-vrf
+ !
+!
+vlan 3802
+ name EUTRAN_VRF
+ vn-segment 90002
+!
+interface vlan 3802
+ description l3vni_interface_EUTRAN_VRF
+ vrf member EUTRAN
+ ip forward
+ no shutdown
+!
+interface nve1
+ member vni 90002 associate-vrf
+ !
+!
+vlan 3803
+ name Mobile_4G_Bearer_VRF
+ vn-segment 90003
+!
+interface vlan 3803
+ description l3vni_interface_Mobile_4G_Bearer_VRF
+ vrf member Mobile_4G_Bearer
+ ip forward
+ no shutdown
+!
+interface nve1
+ member vni 90003 associate-vrf
+ !
+!
+vlan 3804
+ name Mobile_3G_PS_Bearer_VRF
+ vn-segment 90004
+!
+interface vlan 3804
+ description l3vni_interface_Mobile_3G_PS_Bearer_VRF
+ vrf member Mobile_3G_PS_Bearer
+ ip forward
+ no shutdown
+!
+interface nve1
+ member vni 90004 associate-vrf
+ !
+!
+vlan 3805
+ name Mobile_Signaling_VRF
+ vn-segment 90005
+!
+interface vlan 3805
+ description l3vni_interface_Mobile_Signaling_VRF
+ vrf member Mobile_Signaling
+ ip forward
+ no shutdown
+!
+interface nve1
+ member vni 90005 associate-vrf
+ !
+!
+vlan 3806
+ name Gi_VAS_VRF
+ vn-segment 90006
+!
+interface vlan 3806
+ description l3vni_interface_Gi_VAS_VRF
+ vrf member Gi_VAS
+ ip forward
+ no shutdown
+!
+interface nve1
+ member vni 90006 associate-vrf
+ !
+!
+vlan 3807
+ name CGNAT_VRF
+ vn-segment 90007
+!
+interface vlan 3807
+ description l3vni_interface_CGNAT_VRF
+ vrf member CGNAT
+ ip forward
+ no shutdown
+!
+interface nve1
+ member vni 90007 associate-vrf
+ !
+!
+vlan 3808
+ name IMS_Access_VRF
+ vn-segment 90008
+!
+interface vlan 3808
+ description l3vni_interface_IMS_Access_VRF
+ vrf member IMS_Access
+ ip forward
+ no shutdown
+!
+interface nve1
+ member vni 90008 associate-vrf
+ !
+!
+vlan 3809
+ name Li_VRF
+ vn-segment 90009
+!
+interface vlan 3809
+ description l3vni_interface_Li_VRF
+ vrf member Li
+ ip forward
+ no shutdown
+!
+interface nve1
+ member vni 90009 associate-vrf
+ !
+!
+vlan 3810
+ name Internet_VRF
+ vn-segment 90010
+!
+interface vlan 3810
+ description l3vni_interface_Internet_VRF
+ vrf member Internet
+ ip forward
+ no shutdown
+!
+interface nve1
+ member vni 90010 associate-vrf
+ !
+!
+vlan 3811
+ name OAM_VRF
+ vn-segment 90011
+!
+interface vlan 3811
+ description l3vni_interface_OAM_VRF
+ vrf member OAM
+ ip forward
+ no shutdown
+!
+interface nve1
+ member vni 90011 associate-vrf
+ !
+!
+vlan 3812
+ name Inband_MGMT_VRF
+ vn-segment 90012
+!
+interface vlan 3812
+ description l3vni_interface_Inband_MGMT_VRF
+ vrf member Inband_MGMT
+ ip forward
+ no shutdown
+!
+interface nve1
+ member vni 90012 associate-vrf
+ !
+!
+vlan 3813
+ name Central_OAM_VRF
+ vn-segment 90013
+!
+interface vlan 3813
+ description l3vni_interface_Central_OAM_VRF
+ vrf member Central_OAM
+ ip forward
+ no shutdown
+!
+interface nve1
+ member vni 90013 associate-vrf
+ !
+!
+vlan 3814
+ name OAM_Internet_VRF
+ vn-segment 90014
+!
+interface vlan 3814
+ description l3vni_interface_OAM_Internet_VRF
+ vrf member OAM_Internet
+ ip forward
+ no shutdown
+!
+interface nve1
+ member vni 90014 associate-vrf
+ !
+!
+interface Port-channel 1
+ description :TO=Leaf2 :RP=Eth1/49-50 - Peer-Link
+ no shutdown
+ mtu 9178
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2018-2023,2026-2027,3500-3507,3600-3601,3604-3605,3607,3610-3689,3700-3708,3800-3814
+!
+interface Port-channel 2
+ description :TO=Spine1 :RP=Eth1/3-4 - Fabric-Uplink
+ no shutdown
+ mtu 9178
+ vpc 2
+ no switchport
+ vrf member None
+ ip address 172.21.1.7/31
+!
+interface Port-channel 3
+ description :TO=Spine2 :RP=Eth1/5-6 - Fabric-Uplink
+ no shutdown
+ mtu 9178
+ vpc 3
+ no switchport
+ vrf member None
+ ip address 172.21.1.9/31
+!
+interface Port-channel 10
+ description :TO=STOR1 :RP=Eth1/2 - OSP_CEPH_Trunk_1
+ no shutdown
+ mtu 9178
+ vpc 10
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2018,3502,3504 switchport trunk native vlan 3504
+!
+interface Port-channel 11
+ description :TO=STOR2 :RP=Eth1/2 - OSP_CEPH_Trunk_1
+ no shutdown
+ mtu 9178
+ vpc 11
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2018,3502,3504 switchport trunk native vlan 3504
+!
+interface Port-channel 12
+ description :TO=STOR3 :RP=Eth1/2 - OSP_CEPH_Trunk_1
+ no shutdown
+ mtu 9178
+ vpc 12
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2018,3502,3504 switchport trunk native vlan 3504
+!
+interface Port-channel 13
+ description :TO=STOR1 :RP=Eth2/2 - OSP_CEPH_Trunk_2
+ no shutdown
+ mtu 9178
+ vpc 13
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode access
+ switchport access vlan 3500,3504
+!
+interface Port-channel 14
+ description :TO=STOR2 :RP=Eth2/2 - OSP_CEPH_Trunk_2
+ no shutdown
+ mtu 9178
+ vpc 14
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 3500,3504 switchport trunk native vlan 3504
+!
+interface Port-channel 15
+ description :TO=STOR3 :RP=Eth2/2 - OSP_CEPH_Trunk_2
+ no shutdown
+ mtu 9178
+ vpc 15
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 3500,3504 switchport trunk native vlan 3504
+!
+interface Port-channel 16
+ description :TO=DIR1 :RP=Eth2/2 - OSP_director_Trunk2
+ no shutdown
+ mtu 9178
+ vpc 16
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2018-2019,3501,3504,3507 switchport trunk native vlan 3504
+!
+interface Port-channel 17
+ description :TO=DIR2 :RP=Eth1/2 - OSP_director_Trunk1
+ no shutdown
+ mtu 9178
+ vpc 17
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2018-2019,3501,3504,3507 switchport trunk native vlan 3504
+!
+interface Port-channel 18
+ description :TO=DIR2 :RP=Eth2/2 - OSP_director_Trunk2
+ no shutdown
+ mtu 9178
+ vpc 18
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode access
+ switchport access vlan 2018-2019,3501,3504,3507
+!
+interface Port-channel 19
+ description :TO=CTRL1 :RP=Eth1/2 - OSP_Controler_Trunk1
+ no shutdown
+ mtu 9178
+ vpc 19
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode access
+ switchport access vlan 2018-2019,3501,3504,3507
+!
+interface Port-channel 20
+ description :TO=CTRL2 :RP=Eth1/2 - OSP_Controler_Trunk1
+ no shutdown
+ mtu 9178
+ vpc 20
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2019,3502-3504 switchport trunk native vlan 3504
+!
+interface Port-channel 21
+ description :TO=CTRL3 :RP=Eth1/2 - OSP_Controler_Trunk1
+ no shutdown
+ mtu 9178
+ vpc 21
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2019,3502-3504 switchport trunk native vlan 3504
+!
+interface Port-channel 22
+ description :TO=CTRL1 :RP=Eth2/2 - OSP_Controler_Trunk2
+ no shutdown
+ mtu 9178
+ vpc 22
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2019,3502-3504 switchport trunk native vlan 3504
+!
+interface Port-channel 23
+ description :TO=CTRL2 :RP=Eth2/2 - OSP_Controler_Trunk2
+ no shutdown
+ mtu 9178
+ vpc 23
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2018,3500-3501,3504 switchport trunk native vlan 3504
+!
+interface Port-channel 24
+ description :TO=CTRL3 :RP=Eth2/2 - OSP_Controler_Trunk2
+ no shutdown
+ mtu 9178
+ vpc 24
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2018,3500-3501,3504 switchport trunk native vlan 3504
+!
+interface Port-channel 25
+ description :TO=ADMIN1 :RP=Eth1/2 - RHV_Compute_Trunk1
+ no shutdown
+ mtu 9178
+ vpc 25
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2018,3500-3501,3504 switchport trunk native vlan 3504
+!
+interface Port-channel 26
+ description :TO=ADMIN2 :RP=Eth1/2 - RHV_Compute_Trunk1
+ no shutdown
+ mtu 9178
+ vpc 26
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2023,3505-3507 switchport trunk native vlan 3504
+!
+interface Port-channel 27
+ description :TO=ADMIN3 :RP=Eth1/2 - RHV_Compute_Trunk1
+ no shutdown
+ mtu 9178
+ vpc 27
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2023,3505-3507 switchport trunk native vlan 3504
+!
+interface Port-channel 28
+ description :TO=ADMIN4 :RP=Eth1/2 - RHV_Compute_Trunk1
+ no shutdown
+ mtu 9178
+ vpc 28
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2023,3505-3507 switchport trunk native vlan 3504
+!
+interface Port-channel 29
+ description :TO=ADMIN5 :RP=Eth1/2 - RHV_Compute_Trunk1
+ no shutdown
+ mtu 9178
+ vpc 29
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2023,3505-3507 switchport trunk native vlan 3504
+!
+interface Port-channel 30
+ description :TO=ADMIN6 :RP=Eth1/2 - RHV_Compute_Trunk1
+ no shutdown
+ mtu 9178
+ vpc 30
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2023,3505-3507 switchport trunk native vlan 3504
+!
+interface Port-channel 31
+ description :TO=ADMIN1 :RP=Eth2/2 - RHV_Compute_Trunk2
+ no shutdown
+ mtu 9178
+ vpc 31
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2023,3505-3507 switchport trunk native vlan 3504
+!
+interface Port-channel 32
+ description :TO=ADMIN2 :RP=Eth2/2 - RHV_Compute_Trunk2
+ no shutdown
+ mtu 9178
+ vpc 32
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2020-2021,2026 switchport trunk native vlan 3504
+!
+interface Port-channel 33
+ description :TO=ADMIN3 :RP=Eth2/2 - RHV_Compute_Trunk2
+ no shutdown
+ mtu 9178
+ vpc 33
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2020-2021,2026 switchport trunk native vlan 3504
+!
+interface Port-channel 34
+ description :TO=ADMIN4 :RP=Eth2/2 - RHV_Compute_Trunk2
+ no shutdown
+ mtu 9178
+ vpc 34
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2020-2021,2026 switchport trunk native vlan 3504
+!
+interface Port-channel 35
+ description :TO=ADMIN5 :RP=Eth2/2 - RHV_Compute_Trunk2
+ no shutdown
+ mtu 9178
+ vpc 35
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2020-2021,2026 switchport trunk native vlan 3504
+!
+interface Port-channel 36
+ description :TO=ADMIN6 :RP=Eth2/2 - RHV_Compute_Trunk2
+ no shutdown
+ mtu 9178
+ vpc 36
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2020-2021,2026 switchport trunk native vlan 3504
+!
+interface Port-channel 37
+ description :TO=COM1 :RP=Eth1/2
+ no shutdown
+ mtu 9178
+ vpc 37
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2020-2021,2026 switchport trunk native vlan 3504
+!
+interface Port-channel 38
+ description :TO=COM2 :RP=Eth1/2
+ no shutdown
+ mtu 9178
+ vpc 38
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2018,2022,3500-3501,3503-3504 switchport trunk native vlan 3504
+!
+interface Port-channel 39
+ description :TO=COM3 :RP=Eth1/2
+ no shutdown
+ mtu 9178
+ vpc 39
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2018,2022,3500-3501,3503-3504 switchport trunk native vlan 3504
+!
+interface Port-channel 40
+ description :TO=COM4 :RP=Eth1/2
+ no shutdown
+ mtu 9178
+ vpc 40
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2018,2022,3500-3501,3503-3504 switchport trunk native vlan 3504
+!
+interface Port-channel 41
+ description :TO=COM5 :RP=Eth1/2
+ no shutdown
+ mtu 9178
+ vpc 41
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2018,2022,3500-3501,3503-3504 switchport trunk native vlan 3504
+!
+interface Port-channel 42
+ description :TO=COM6 :RP=Eth1/2
+ no shutdown
+ mtu 9178
+ vpc 42
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2018,2022,3500-3501,3503-3504 switchport trunk native vlan 3504
+!
+interface Port-channel 43
+ description :TO=COM1 :RP=Eth2/2
+ no shutdown
+ mtu 9178
+ vpc 43
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 2018,2022,3500-3501,3503-3504 switchport trunk native vlan 3504
+!
+interface Port-channel 44
+ description :TO=COM2 :RP=Eth2/2
+ no shutdown
+ mtu 9178
+ vpc 44
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 3504 switchport trunk native vlan 3504
+!
+interface Port-channel 45
+ description :TO=COM3 :RP=Eth2/2
+ no shutdown
+ mtu 9178
+ vpc 45
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 3504 switchport trunk native vlan 3504
+!
+interface Port-channel 50
+ description :TO=COM2 :RP=Eth3/2
+ no shutdown
+ mtu 9178
+ vpc 50
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 3504 switchport trunk native vlan 3504
+!
+interface Port-channel 51
+ description :TO=COM3 :RP=Eth3/2
+ no shutdown
+ mtu 9178
+ vpc 51
+ no lacp suspend-individual
+ no lacp graceful-convergence
+ switchport
+ switchport mode trunk
+ switchport trunk allowed vlan 3504 switchport trunk native vlan 3504
+!
+interface Eth1/49
+ description :TO=Leaf1 :RP=Eth2/1 - Peer-Link
+ no shutdown
+ channel-group 1 mode active
+!
+interface Eth1/50
+ description :TO=Leaf1 :RP=Eth2/2 - Peer-Link
+ no shutdown
+ channel-group 1 mode active
+!
+interface Eth1/51
+ description :TO=Spine1 :RP=Eth1/5 - Fabric Uplink
+ no shutdown
+ channel-group 2 mode active
+!
+interface Eth1/52
+ description :TO=Spine1 :RP=Eth1/6 - Fabric Uplink
+ no shutdown
+ channel-group 2 mode active
+!
+interface Eth1/53
+ description :TO=Spine2 :RP=Eth1/5 - Fabric Uplink
+ no shutdown
+ channel-group 3 mode active
+!
+interface Eth1/54
+ description :TO=Spine2 :RP=Eth1/6 - Fabric Uplink
+ no shutdown
+ channel-group 3 mode active
+!
+interface Eth1/1
+ description :TO=STOR1 :RP=Eth1/2 
+ no shutdown
+ channel-group 10 mode active
+!
+interface Eth1/2
+ description :TO=STOR2 :RP=Eth1/2 
+ no shutdown
+ channel-group 11 mode active
+!
+interface Eth1/3
+ description :TO=STOR3 :RP=Eth1/2 
+ no shutdown
+ channel-group 12 mode active
+!
+interface Eth1/4
+ description :TO=STOR1 :RP=Eth2/2 
+ no shutdown
+ channel-group 13 mode active
+!
+interface Eth1/5
+ description :TO=STOR2 :RP=Eth2/2 
+ no shutdown
+ channel-group 14 mode active
+!
+interface Eth1/6
+ description :TO=STOR3 :RP=Eth2/2 
+ no shutdown
+ channel-group 15 mode active
+!
+interface Eth1/7
+ description :TO=DIR1 :RP=Eth1/2 
+ no shutdown
+ channel-group 16 mode active
+!
+interface Eth1/8
+ description :TO=DIR2 :RP=Eth1/2 
+ no shutdown
+ channel-group 17 mode active
+!
+interface Eth1/9
+ description :TO=DIR1 :RP=Eth2/2 
+ no shutdown
+ channel-group 18 mode active
+!
+interface Eth1/10
+ description :TO=DIR2 :RP=Eth2/2 
+ no shutdown
+ channel-group 19 mode active
+!
+interface Eth1/11
+ description :TO=CTRL1 :RP=Eth1/2
+ no shutdown
+ channel-group 20 mode active
+!
+interface Eth1/12
+ description :TO=CTRL2 :RP=Eth1/2
+ no shutdown
+ channel-group 21 mode active
+!
+interface Eth1/13
+ description :TO=CTRL3 :RP=Eth1/2
+ no shutdown
+ channel-group 22 mode active
+!
+interface Eth1/14
+ description :TO=CTRL1 :RP=Eth2/2
+ no shutdown
+ channel-group 23 mode active
+!
+interface Eth1/15
+ description :TO=CTRL2 :RP=Eth2/2
+ no shutdown
+ channel-group 24 mode active
+!
+interface Eth1/16
+ description :TO=CTRL3 :RP=Eth2/2
+ no shutdown
+ channel-group 25 mode active
+!
+interface Eth1/17
+ description :TO=ADMIN1 :RP=Eth1/2
+ no shutdown
+ channel-group 26 mode active
+!
+interface Eth1/18
+ description :TO=ADMIN2 :RP=Eth1/2
+ no shutdown
+ channel-group 27 mode active
+!
+interface Eth1/19
+ description :TO=ADMIN3 :RP=Eth1/2
+ no shutdown
+ channel-group 28 mode active
+!
+interface Eth1/20
+ description :TO=ADMIN4 :RP=Eth1/2
+ no shutdown
+ channel-group 29 mode active
+!
+interface Eth1/21
+ description :TO=ADMIN5 :RP=Eth1/2
+ no shutdown
+ channel-group 30 mode active
+!
+interface Eth1/22
+ description :TO=ADMIN6 :RP=Eth1/2
+ no shutdown
+ channel-group 31 mode active
+!
+interface Eth1/23
+ description :TO=ADMIN1 :RP=Eth2/2
+ no shutdown
+ channel-group 32 mode active
+!
+interface Eth1/24
+ description :TO=ADMIN2 :RP=Eth2/2
+ no shutdown
+ channel-group 33 mode active
+!
+interface Eth1/25
+ description :TO=ADMIN3 :RP=Eth2/2
+ no shutdown
+ channel-group 34 mode active
+!
+interface Eth1/26
+ description :TO=ADMIN4 :RP=Eth2/2
+ no shutdown
+ channel-group 35 mode active
+!
+interface Eth1/27
+ description :TO=ADMIN5 :RP=Eth2/2
+ no shutdown
+ channel-group 36 mode active
+!
+interface Eth1/28
+ description :TO=ADMIN6 :RP=Eth2/2
+ no shutdown
+ channel-group 37 mode active
+!
+interface Eth1/29
+ description :TO=COM1 :RP=Eth1/2 - MME OAM-Base
+ no shutdown
+ channel-group 38 mode active
+!
+interface Eth1/30
+ description :TO=COM2 :RP=Eth1/2 - MME OAM-Base
+ no shutdown
+ channel-group 39 mode active
+!
+interface Eth1/31
+ description :TO=COM3 :RP=Eth1/2 - SPGW OAM-Base
+ no shutdown
+ channel-group 40 mode active
+!
+interface Eth1/32
+ description :TO=COM4 :RP=Eth1/2 
+ no shutdown
+ channel-group 41 mode active
+!
+interface Eth1/33
+ description :TO=COM5 :RP=Eth1/2 
+ no shutdown
+ channel-group 42 mode active
+!
+interface Eth1/34
+ description :TO=COM6 :RP=Eth1/2 - SPGW OAM-Base
+ no shutdown
+ channel-group 43 mode active
+!
+interface Eth1/35
+ description :TO=COM1 :RP=Eth2/2 - MME North-South
+ no shutdown
+ channel-group 44 mode active
+!
+interface Eth1/36
+ description :TO=COM2 :RP=Eth2/2 - MME North-South
+ no shutdown
+ channel-group 45 mode active
+!
+interface Eth1/37
+ description :TO=COM3 :RP=Eth2/2 - SPGW North-South
+ no shutdown
+interface Eth1/38
+ description :TO=COM4 :RP=Eth2/2
+ no shutdown
+interface Eth1/39
+ description :TO=COM5 :RP=Eth2/2 - SPGW North-South
+ no shutdown
+interface Eth1/40
+ description :TO=COM6 :RP=Eth2/2 - SPGW North-South
+ no shutdown
+interface Eth1/41
+ description :TO=COM1 :RP=Eth3/2 - MME East-West
+ no shutdown
+ channel-group 50 mode active
+!
+interface Eth1/42
+ description :TO=COM2 :RP=Eth3/2 - MME East-West
+ no shutdown
+ channel-group 51 mode active
+!
+interface Eth1/43
+ description :TO=COM3 :RP=Eth3/2 - SPGW East-West
+ no shutdown
+interface Eth1/44
+ description :TO=COM4 :RP=Eth3/2
+ no shutdown
+interface Eth1/45
+ description :TO=COM5 :RP=Eth3/2 - SPGW East-West
+ no shutdown
+interface Eth1/46
+ description :TO=COM6 :RP=Eth3/2 - SPGW East-West
+ no shutdown
+router bgp 64550
+ router-id 172.21.0.4
+ address-family ipv4 unicast
+ address-family l2vpn evpn
+  retain route-target all
+ !
+ vrf Inband_MGMT
+  address-family ipv4 unicast
+   advertise l2vpn evpn
+ !
+ vrf Central_OAM
+  address-family ipv4 unicast
+   advertise l2vpn evpn
+ !
+ vrf OAM_Internet
+  address-family ipv4 unicast
+   advertise l2vpn evpn
+ !
+ vrf Mobile_2G_PS_Bearer
+  address-family ipv4 unicast
+   advertise l2vpn evpn
+ !
+ vrf EUTRAN
+  address-family ipv4 unicast
+   advertise l2vpn evpn
+ !
+ vrf Mobile_4G_Bearer
+  address-family ipv4 unicast
+   advertise l2vpn evpn
+ !
+ vrf Mobile_3G_PS_Bearer
+  address-family ipv4 unicast
+   advertise l2vpn evpn
+ !
+ vrf Mobile_Signaling
+  address-family ipv4 unicast
+   advertise l2vpn evpn
+ !
+ vrf Gi_VAS
+  address-family ipv4 unicast
+   advertise l2vpn evpn
+ !
+ vrf CGNAT
+  address-family ipv4 unicast
+   advertise l2vpn evpn
+ !
+ vrf IMS_Access
+  address-family ipv4 unicast
+   advertise l2vpn evpn
+ !
+ vrf Li
+  address-family ipv4 unicast
+   advertise l2vpn evpn
+ !
+ vrf Internet
+  address-family ipv4 unicast
+   advertise l2vpn evpn
+ !
+ vrf OAM
+  address-family ipv4 unicast
+   advertise l2vpn evpn
+ !
+neighbor 172.21.0.1 remote-as 64550
+  update-source Vlan 598
+  bfd
+  password etisalat
+  address-family ipv4 unicast
+   send-community both
+   route-reflector-client
+  !
+ !
+neighbor 172.21.0.2 remote-as 64550
+  update-source Vlan 598
+  bfd
+  password etisalat
+  address-family ipv4 unicast
+   send-community both
+   route-reflector-client
+  !
+ !
+router ospf UNDERLAY
+ router-id 172.21.0.4
+ log-adjacency-changes detail
+ timers throttle spf 100 100 5000
+ timers lsa-arrival 15
+ timers throttle lsa 0 50 5000
+ auto-cost reference-bandwidth 400 Gbps
+ !
+interface Po2
+ ip router ospf UNDERLAY area 0.0.0.0
+!
+interface Po3
+ ip router ospf UNDERLAY area 0.0.0.0
+!
+ip pim rp-address 172.21.2.1 group-list 239.100.6.0/24
+!
+interface Lo1
+ ip pim sparse-mode
+!
+interface Lo3
+ ip pim sparse-mode
+!
+interface Po2
+ ip pim sparse-mode
+!
+interface Po3
+ ip pim sparse-mode
+!
+vpc domain 1
+ peer-switch
+ role priority 2
+ system-priority 4096
+ peer-keepalive destination 10.106.160.12 source 10.106.160.13 vrf management
+ peer-gateway
+ ipv6 nd synchronize
+ ip arp synchronize
+!
+interface port-channel 1
+ vpc peer-link
+!
