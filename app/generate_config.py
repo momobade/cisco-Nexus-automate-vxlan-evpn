@@ -2,31 +2,20 @@ import global_header
 import read_excel as re
 import sys
 import getopt
+import argparse
 
+def create_parser():
+    """ return  command line argument parser """
+    parser = argparse.ArgumentParser(description='VxLan Tool')
+    parser.add_argument('file', help="source file")
+    return parser
 
 def main(argv):
-    sourcefile = ''
-    
-    try:
-        opts, args = getopt.getopt(argv, "hi:s:",["sourcefile="])
-    except getopt.GetoptError:
-        print('generate_config.py -s <sourcefile>')
-        sys.exit(2)
-    
-    for opt, arg in opts:
-        if opt == '-h':
-            print('generate_config.py -s <sourcefile>\n')
-            print('<sourcefile> expects excel sheet')
-            sys.exit()
-        elif opt in ('-s', '--sourcefile'):
-            sourcefile = arg
-        
-        print('sourcefile='+sourcefile)
-
+    parser = create_parser()
+    args = parser.parse_args()
+    sourcefile = args.file
 
     device_list = []
-    #file_source = 'ip_information_LAB_VNF.xlsx'
-
     device_list = re.populate_vlan(re.read_vlan(sourcefile))
     device_list = re.populate_bgp(re.read_bgp(sourcefile))
     device_list = re.populate_portChannel(re.read_portChannel(sourcefile))
@@ -35,13 +24,14 @@ def main(argv):
     device_list = re.populate_ethernet(re.read_ethernet(sourcefile))
     device_list = re.populate_vpc(re.read_vpc(sourcefile))
 
-    for _device in device_list:
+    for dev in device_list:
         ## save original stdout
         orig_stdout = sys.stdout
 
-        f = open(_device.hostname+'.txt', 'w')
+        f = open(dev.hostname+'.txt', 'w')
         sys.stdout = f
-        print(_device.show_config_all())
+        print(dev)
+        print(dev.show_config_all())
 
         sys.stdout = orig_stdout
         f.close()
