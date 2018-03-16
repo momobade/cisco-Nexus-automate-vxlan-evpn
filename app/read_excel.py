@@ -373,20 +373,3 @@ def populate_ospf(df):
             _node.add_ospf(_ospf)
 
     return device_list
-
-###############################################################################
-## MAIN Function
-##
-
-# Would probably convert this into a class with function get_configs_all
-#device_list = []
-#file_source = 'ip_information.xlsx'
-
-
-#populate_vlan(read_vlan(file_source))
-#populate_bgp(read_bgp(file_source))
-#populate_portChannel(read_portChannel(file_source))
-#populate_ospf(read_ospf(file_source))
-#populate_multicast(read_multicast(file_source))
-#populate_ethernet(read_ethernet(file_source))
-#populate_vpc(read_vpc(file_source))
