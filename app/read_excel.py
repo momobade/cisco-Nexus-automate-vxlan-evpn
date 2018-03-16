@@ -29,7 +29,7 @@ def call_device_list(_device):
 # Function defined to read from excel sheet directly
 #
 def read_bgp(_srcExcel):
-    bgp_info = pd.read_excel(_srcExcel, sheetname='BGP',header=[1])
+    bgp_info = pd.read_excel(_srcExcel, sheet_name='BGP',header=[1])
 
     # Fill Nan with first value in columns
     bgp_info.fillna(method='ffill', inplace=True)
@@ -50,7 +50,7 @@ def read_bgp(_srcExcel):
 # Function defined to read from excel sheet directly
 #
 def read_portChannel(_srcExcel):
-    portChannel_info = pd.read_excel(_srcExcel, sheetname='Fabric Port-channel', header=[1])
+    portChannel_info = pd.read_excel(_srcExcel, sheet_name='Fabric Port-channel', header=[1])
 
     # Fill Nan with first value in columns
     portChannel_info.fillna(method='ffill', inplace=True)
@@ -83,7 +83,7 @@ def read_portChannel(_srcExcel):
 # Function defined to use read from excel sheet directly
 #
 def read_vlan(_srcExcel):
-    vlan_info = pd.read_excel(_srcExcel, sheetname='VLAN', header=[1])
+    vlan_info = pd.read_excel(_srcExcel, sheet_name='VLAN', header=[1])
 
     # Fill Nan with first value in columns
     vlan_info.fillna(method='ffill', inplace=True)
@@ -108,7 +108,7 @@ def read_vlan(_srcExcel):
 # Function defined to read from excel sheet directly
 #
 def read_ethernet(_srcExcel):
-    eth_info = pd.read_excel(_srcExcel, sheetname='Physical interface', header=[1])
+    eth_info = pd.read_excel(_srcExcel, sheet_name='Physical interface', header=[1])
 
     # Fill Nan with first value in columns
     eth_info.fillna(method='ffill', inplace=True)
@@ -127,7 +127,7 @@ def read_ethernet(_srcExcel):
 # Function defined to use read from excel sheet directly
 #
 def read_vpc(_srcExcel):
-    vpc_info = pd.read_excel(_srcExcel, sheetname='vPC', header=[1])
+    vpc_info = pd.read_excel(_srcExcel, sheet_name='vPC', header=[1])
 
     vpc_info['Domain'] = vpc_info['Domain'].astype(int)
     vpc_info['Peer-Link'] = vpc_info['Peer-Link'].astype(int)
@@ -139,12 +139,12 @@ def read_vpc(_srcExcel):
     return vpc_info
 
 def read_multicast(_srcExcel):
-    multicast_info = pd.read_excel(_srcExcel, sheetname='Multicast')
+    multicast_info = pd.read_excel(_srcExcel, sheet_name='Multicast')
 
     return multicast_info
 
 def read_ospf(_srcExcel):
-    ospf_info = pd.read_excel(_srcExcel, sheetname='OSPF')
+    ospf_info = pd.read_excel(_srcExcel, sheet_name='OSPF')
 
     return ospf_info
 
